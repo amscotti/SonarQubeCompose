@@ -2,7 +2,7 @@ version: "3"
 
 services:
   sonarqube:
-    image: sonarqube:8.5.1-community
+    image: sonarqube:8.6.0-community
     depends_on:
       - db
     environment:
@@ -14,6 +14,8 @@ services:
       - sonarqube_extensions:/opt/sonarqube/extensions
       - sonarqube_logs:/opt/sonarqube/logs
       - sonarqube_temp:/opt/sonarqube/temp
+    networks:
+      - sonarqube
     ports:
       - "9000:9000"
   db:
@@ -24,6 +26,8 @@ services:
     volumes:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
+    networks:
+      - sonarqube
 
 volumes:
   sonarqube_data:
@@ -32,3 +36,6 @@ volumes:
   sonarqube_temp:
   postgresql:
   postgresql_data:
+
+networks:
+  sonarqube:
