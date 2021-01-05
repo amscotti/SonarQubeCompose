@@ -55,10 +55,10 @@ As I scan the same project on a regular basis I found that creating an alias is 
 
 ```bash
 alias sonar-scan-<Project Key>="sonar-scanner \
--Dsonar.projectKey="<Project Key>" \
--Dsonar.login="<Generated Token>" \
+-Dsonar.projectKey=<Project Key> \
+-Dsonar.login=<Generated Token> \
 -Dsonar.host.url=http://localhost:9000 \
--Dsonar.projectBaseDir="<Project Path>"
+-Dsonar.projectBaseDir=<Project Path>"
 ```
 
 ## Scanning a project using the sonar-scanner in Docker
@@ -72,8 +72,8 @@ docker run --rm \
     --network="sonarqubecompose_sonarqube" \
     sonarsource/sonar-scanner-cli \
     -Dsonar.host.url=http://sonarqube:9000 \
-    -Dsonar.login="<Generated Token>" \
-    -Dsonar.projectKey="<Project Key>"
+    -Dsonar.login=<Generated Token> \
+    -Dsonar.projectKey=<Project Key>
 ```
 
 I have had some issues with scanning large projects using the Docker image, but this could be due to my system configuration. I typically will use a natively installed version of the scanner.
