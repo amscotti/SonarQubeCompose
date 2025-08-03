@@ -2,7 +2,10 @@
 Using Docker Compose will create a [SonarQube](https://www.sonarqube.org/) server backed by a PostgreSQL database. All the data will be saved into Docker volumes, ensuring everything is persisted even after the Docker containers are turned off. By using Docker Compose this helps with create a community SonarQube server to let users analyze projects code quality with the minimum numbers of steps needed.
 
 ## Prerequisites
-Docker and Docker Compose, both of which can be installed with [Docker Desktop](https://www.docker.com/products/docker-desktop) if you are using macOS or Windows 10.
+Docker and Docker Compose, both of which can be installed with [Docker Desktop](https://www.docker.com/products/docker-desktop) if you are using macOS or Windows 11.
+
+**Alternative: Open Source Option**
+[Podman Desktop](https://podman-desktop.io/) - A free, open-source alternative to Docker Desktop with 100% Docker compatibility. No licensing restrictions for commercial use.
 
 ## Commands
 * `docker-compose up` - Creates everything based on the `docker-compose.yml`
@@ -77,6 +80,43 @@ docker run --rm \
 ```
 
 I have had some issues with scanning large projects using the Docker image, but this could be due to my system configuration. I typically will use a natively installed version of the scanner.
+
+# Using Podman Desktop as a Docker Alternative
+
+[Podman Desktop](https://podman-desktop.io/) is a free, open-source alternative to Docker Desktop that offers several advantages:
+
+## Benefits of Podman Desktop
+* **Free for all users** - No licensing restrictions, including commercial use
+* **Enhanced security** - Daemonless and rootless architecture 
+* **100% Docker compatibility** - Uses the same `docker-compose.yml` files and commands
+* **Cross-platform** - Available for macOS, Windows, and Linux
+* **Better performance** - No daemon overhead, faster on macOS with native Hypervisor framework
+
+## Installation
+1. **Install Podman CLI first** (required for Podman Desktop):
+   - **macOS**: `brew install podman`
+   - **Windows**: Download from [Podman releases](https://github.com/containers/podman/releases)
+   - **Linux**: Use your distribution's package manager
+
+2. **Install Podman Desktop**:
+   - Download from [podman-desktop.io](https://podman-desktop.io/)
+   - Or use package managers: `brew install --cask podman-desktop` (macOS)
+
+## Setup for Docker Compatibility
+1. Open Podman Desktop
+2. Go to **Settings** > **Resources**
+3. Enable **"Docker compatibility"** 
+4. Set up **"Compose CLI support"** if needed
+5. Your existing `docker-compose.yml` will work without any changes
+
+## Running SonarQube with Podman Desktop
+The same commands work as with Docker Desktop:
+```bash
+podman-compose up -d     # or docker-compose up -d (with compatibility enabled)
+podman-compose logs -f   # or docker-compose logs -f
+podman-compose stop      # or docker-compose stop
+podman-compose down      # or docker-compose down
+```
 
 # Contributions are welcome!
 See something wrong? Could the documentation be better? Feel free to create a Pull Request for any updates.
