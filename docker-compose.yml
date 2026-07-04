@@ -1,6 +1,6 @@
 services:
   sonarqube:
-    image: sonarqube:25.7.0.110598-community
+    image: sonarqube:26.6.0.123539-community
     depends_on:
       - db
     environment:
@@ -21,7 +21,7 @@ services:
     ports:
       - "9000:9000"
   db:
-    image: postgres:17.5
+    image: postgres:18.4
     environment:
       POSTGRES_USER: sonar
       POSTGRES_PASSWORD: sonar
